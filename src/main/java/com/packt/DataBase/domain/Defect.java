@@ -1,10 +1,13 @@
 package com.packt.DataBase.domain;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -16,20 +19,22 @@ public class Defect {
   
 	private String severity, errorCode;
    
-    private long idSolution;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app")
-    private App app;
+    @JoinColumn(name = "idsolution")
+    private Solution solution;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "defect")
+    private List<DefectInstance> defects;
+    
 
     //-----------------------------------------Constructors---------------------------------------------------
   
     public Defect() {}
 
-    public Defect(String Severity, String errorCode, long idSolution) {
+    public Defect(String Severity, String errorCode) {
       super();
       this.severity = Severity;
       this.errorCode = errorCode;
-      this.idSolution = idSolution;
     
     }
 
@@ -38,19 +43,38 @@ public class Defect {
 		return severity;
 	}
 	public void setSeverity(String severity) {
-		severity = severity;
+		this.severity = severity;
 	}
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Solution getSolution() {
+		return solution;
+	}
+
+	public void setSolution(Solution solution) {
+		this.solution = solution;
+	}
+
+	public List<DefectInstance> getDefects() {
+		return defects;
+	}
+
+	public void setDefects(List<DefectInstance> defects) {
+		this.defects = defects;
+	}
+
 	public String getErrorCode() {
 		return errorCode;
 	}
 	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
 	}
-	public long getIdSolution() {
-		return idSolution;
-	}
-	public void setIdSolution(long idSolution) {
-		this.idSolution = idSolution;
-	}
+
 
 }

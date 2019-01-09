@@ -15,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @SpringBootApplication
 public class DataBaseApplication {
 
-	//  @Autowired 
-     // private AppRepository apprepository;
+	/*  @Autowired 
+      private AppRepository AppRepository;
 
-	 // @Autowired 
-      //private DefectRepository defrepository;
+	  @Autowired 
+      private DefectRepository DefRepository;*/
 	  
 	public static void main(String[] args) {
 		SpringApplication.run(DataBaseApplication.class, args);
