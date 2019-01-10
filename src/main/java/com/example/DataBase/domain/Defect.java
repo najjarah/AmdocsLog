@@ -1,4 +1,4 @@
-package com.packt.DataBase.domain;
+package com.example.DataBase.domain;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,6 +22,7 @@ public class Defect {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idsolution")
     private Solution solution;
+    
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "defect")
     private List<DefectInstance> defects;

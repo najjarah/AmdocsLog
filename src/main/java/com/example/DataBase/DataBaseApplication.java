@@ -2,13 +2,17 @@ package com.example.DataBase;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import com.packt.DataBase.domain.AppRepository;
-import com.packt.DataBase.domain.DefectRepository;
+
+import com.example.DataBase.domain.AppRepository;
+import com.example.DataBase.domain.DefectRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 

@@ -1,4 +1,4 @@
-package com.packt.DataBase.domain;
+package com.example.DataBase.domain;
 
 import java.util.List;
 
