@@ -1,7 +1,6 @@
 package com.example.DataBase.domain;
 
-import java.sql.Date;
-import java.sql.Time;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,28 +10,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
 @Entity
 public class LogFile {
+	
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
-	private Time time;
-	private Date date;
+	private String ftime;
+	private String fdate;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "logfile")
     private List<DefectInstance> defects;
+	
 
 //-------------------------------------constructors--------------------------------------------------------------	
 	public LogFile() {
 	}
 
-	public LogFile(String name, Time time, Date date) {
+	public LogFile(String name, String ftime, String fdate) {
 		super();
 		this.name = name;
-		this.time = time;
-		this.date = date;
+		this.ftime = ftime;
+		this.fdate = fdate;
 	}
 
 //----------------------------------------getters and setters----------------------------------------------------------
@@ -49,16 +52,18 @@ public class LogFile {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Time getTime() {
-		return time;
+	public String getTime() {
+		return ftime;
 	}
-	public void setTime(Time time) {
-		this.time = time;
+	public void setTime(String ftime) {
+		this.ftime = ftime;
 	}
-	public Date getDate() {
-		return date;
+	public String getDate() {
+		return fdate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(String fdate) {
+		this.fdate = fdate;
 	}
+	
+	
 }
