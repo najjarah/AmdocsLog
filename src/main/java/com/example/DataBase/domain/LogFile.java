@@ -3,6 +3,7 @@ package com.example.DataBase.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class LogFile {
 	private String ftime;
 	private String fdate;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "logfile")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "logfile")
     private List<DefectInstance> defects;
 	
 

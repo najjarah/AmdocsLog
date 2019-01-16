@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DataBase.Repository.AppRepository;
 import com.example.DataBase.Repository.DefectInstanceRepository;
@@ -17,7 +18,7 @@ import com.example.DataBase.domain.Defect;
 import com.example.DataBase.domain.DefectInstance;
 import com.example.DataBase.domain.LogFile;
 
-
+//@RestController
 public class LogFileRouting {
 	
 	public static final int typePosition = 5;
@@ -30,7 +31,17 @@ public class LogFileRouting {
 	public List<DefectInstance> defInsList = new ArrayList<DefectInstance>();
 	public List<LogFile> logFList = new ArrayList<LogFile>();
 	
-
+//	  @Autowired 
+//      private AppRepository appRepository;
+//
+//	  @Autowired 
+//      private DefectRepository defectRepository;
+//	  
+//	  @Autowired 
+//      private LogFileRepository logFileRepository;
+//	  
+//	  @Autowired 
+//      private DefectInstanceRepository defectInstanceRepository;
 
 	 
 //-----------------------------------------------------getters and setters----------------------------------------------------------------
@@ -39,8 +50,11 @@ public class LogFileRouting {
 		
 //----------------------------------------------------------controller methods-----------------------------------------------------------
 	
-	public void SearchDefects(File file, String searchStr) throws Exception {
+	public void SearchDefects(File file, String searchStr,AppRepository appRepo, DefectRepository defRepo, LogFileRepository logRepo, DefectInstanceRepository definsRepo) throws Exception 
+	
+	{
 
+		
 		int Counter = 0;
 		Scanner scanFile = new Scanner(file);
 		String line = scanFile.nextLine().toString();
@@ -91,8 +105,12 @@ public class LogFileRouting {
 					tempDefectInstance.setDefect(tempDefect);
 					tempDefectInstance.setLogfile(templogfile);
 					
-					defList.add(tempDefect);
-					appList.add(tempApp);
+					if (!defList.contains(tempDefect)) {
+						defList.add(tempDefect);
+					}
+					if (!appList.contains(tempApp)) {
+						appList.add(tempApp);
+					}
 					defInsList.add(tempDefectInstance);
 					
 	
@@ -104,7 +122,18 @@ public class LogFileRouting {
 		logFList.add(templogfile);
 		System.out.println(Counter + " '" + searchStr + "' founded in log file " );
 		scanFile.close();
+		
+		defRepo.deleteAll();
+		logRepo.deleteAll();
+		appRepo.deleteAll();
+		definsRepo.deleteAll();
+			
+		defRepo.saveAll(defList);
+		logRepo.saveAll(logFList);
+		appRepo.saveAll(appList);
+		definsRepo.saveAll(defInsList);
 }
+	
 
 
 }

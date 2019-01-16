@@ -9,11 +9,12 @@ import com.example.DataBase.domain.App;
 
 public interface AppRepository extends CrudRepository<App, Long>  {
 	
-	/*@Query("select a from App a where a.name = ?1")
-	List<App> findByName(String name);
+	/*
+	@Query("SELECT a.id FROM app a WHERE a.name = ?1 and a.type = ?2 ")
+	List<App> findByName(String name, String type);
 	
 	List<App> findByType(String type);
 
-	List<App> findByNameAndType(String name, String type);*/
-
+	List<App> findByNameAndType(String name, String type);
+*/
 }

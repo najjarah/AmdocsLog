@@ -2,6 +2,7 @@ package com.example.DataBase.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class App {
 
 	private String name, type;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "app")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "app")
     private List<DefectInstance> defects;
 
 //-------------------------------------constructors--------------------------------------------------------------	
@@ -48,4 +49,20 @@ public class App {
 		this.type = type;
 	}
 
-}
+//----------------------------------------------------------@Override-----------------------------------------------------------------
+	
+		@Override
+	  public boolean equals(Object object)
+	  {
+	      boolean sameSame = false;
+
+	      if (object != null && object instanceof Defect)
+	      {
+	          sameSame = (this.getName() == ((App) object).getName() && this.getType() == ((App) object).getType());
+	      }
+
+	      return sameSame;
+	  }
+
+	}
+

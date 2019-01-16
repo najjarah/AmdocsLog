@@ -23,18 +23,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringBootApplication
 public class DataBaseApplication {
+	  @Autowired 
+  private AppRepository appRepository;
 
-	  @Autowired 
-      private AppRepository appRepository;
-
-	  @Autowired 
-      private DefectRepository defectRepository;
-	  
-	  @Autowired 
-      private LogFileRepository logFileRepository;
-	  
-	  @Autowired 
-      private DefectInstanceRepository defectInstanceRepository;
+  @Autowired 
+  private DefectRepository defectRepository;
+  
+  @Autowired 
+  private LogFileRepository logFileRepository;
+  
+  @Autowired 
+  private DefectInstanceRepository defectInstanceRepository;
+	
 	  
 	public static void main(String[] args) {
 		SpringApplication.run(DataBaseApplication.class, args);
@@ -46,12 +46,9 @@ public class DataBaseApplication {
     	   String searchStr = "Caused by";
    			File file = new File("C:\\Users\\Rental-Media\\Desktop\\CMServer.20170914_2028.log");
    			LogFileRouting routingtotables = new LogFileRouting();
-   			routingtotables.SearchDefects(file, searchStr);
+   			routingtotables.SearchDefects(file, searchStr,appRepository,defectRepository, logFileRepository,defectInstanceRepository);
    			
-   			defectRepository.saveAll(routingtotables.defList);
-			logFileRepository.saveAll(routingtotables.logFList);
-			appRepository.saveAll(routingtotables.appList);
-			defectInstanceRepository.saveAll(routingtotables.defInsList);
+   		
        };
 	 }
 }
