@@ -11,6 +11,7 @@ public class LogController {
 	 @Autowired
      private AppRepository repository;
 
+	 
 	 @RequestMapping("/app")
      public Iterable<App> getApp() {
 		 return repository.findAll();
