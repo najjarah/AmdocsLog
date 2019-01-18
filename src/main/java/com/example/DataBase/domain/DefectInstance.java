@@ -6,8 +6,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.ConstructorResult;
+import javax.persistence.ColumnResult;
 
 @Entity
+
+@SqlResultSetMapping(
+		name="DefectViewMapping",
+	    classes={
+	        @ConstructorResult(
+	        		targetClass=ViewDefects.class,
+	            columns={
+	                @ColumnResult(name="name", type = String.class),
+	                @ColumnResult(name="type", type = String.class),
+	                @ColumnResult(name="error_code", type = String.class),
+	                @ColumnResult(name="severity", type = String.class),
+	              //  @ColumnResult(name="Sol", type = String.class)
+	            }
+	        )
+	    }
+	)
+
+@NamedNativeQuery(name = "DefectInstance.getViewDefects", query = "select ap.name, ap.type, d.error_code, d.severity from app ap, defect d, defect_instance di where ap.id=di.appid and d.id=di.defectid ", resultSetMapping = "DefectViewMapping")
+
+
 public class DefectInstance  {
 
 
