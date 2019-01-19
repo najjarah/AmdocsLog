@@ -81,17 +81,17 @@ public class Defect {
 	
 //----------------------------------------------------------@Override-----------------------------------------------------------------
 	
-	@Override
-  public boolean equals(Object object)
-  {
-      boolean sameSame = false;
-
-      if (object != null && object instanceof Defect)
-      {
-          sameSame = this.getErrorCode() == ((Defect) object).getErrorCode();
-      }
-
-      return sameSame;
-  }
+//	@Override
+//  public boolean equals(Object object)
+//  {
+//      boolean sameSame = false;
+//
+//      if (object != null && object instanceof Defect)
+//      {
+//          sameSame = this.getErrorCode() == ((Defect) object).getErrorCode();
+//      }
+//
+//      return sameSame;
+  //}
 
 }

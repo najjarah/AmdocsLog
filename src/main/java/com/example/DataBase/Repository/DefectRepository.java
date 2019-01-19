@@ -9,8 +9,7 @@ import com.example.DataBase.domain.App;
 import com.example.DataBase.domain.Defect;
 
 public interface DefectRepository extends CrudRepository<Defect, Long>  {
-	/*
-	@Query("SELECT d.id FROM defect d WHERE  d.error_code = ?2 ")
-	List<App> findByName(String code);
-	*/
+
+	@Query(nativeQuery= true, value = "select * from defect d where d.error_code= ?1")
+	List<Defect> checkDefectexist(String errorCode);
 }

@@ -29,7 +29,10 @@ import javax.persistence.ColumnResult;
 	    }
 	)
 
-@NamedNativeQuery(name = "DefectInstance.getViewDefects", query = "select ap.name, ap.type, d.error_code, d.severity from app ap, defect d, defect_instance di where ap.id=di.appid and d.id=di.defectid ", resultSetMapping = "DefectViewMapping")
+@NamedNativeQuery(name = "DefectInstance.getViewDefects", 
+		query = "select ap.name, ap.type, d.error_code, d.severity "
+		+ "from app ap, defect d, defect_instance di"
+		+ " where ap.id=di.appid and d.id=di.defectid ", resultSetMapping = "DefectViewMapping")
 
 
 public class DefectInstance  {

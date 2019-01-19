@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.DataBase.Repository.AppRepository;
 import com.example.DataBase.Repository.DefectInstanceRepository;
 import com.example.DataBase.Repository.DefectRepository;
@@ -100,17 +96,26 @@ public class LogFileRouting {
 					else
 						tempApp.setType("Custom");
 					
+					appList = appRepo.checkAppexist(tempApp.getName() ,tempApp.getType() );
+					if(appList.isEmpty()) {
+						appRepo.save(tempApp);
+					}
+					else {
+						tempDefectInstance.setApp(appList.get(0));
+					}
 					
-					tempDefectInstance.setApp(tempApp);
-					tempDefectInstance.setDefect(tempDefect);
+					defList = defRepo.checkDefectexist(tempDefect.getErrorCode());
+					if(defList.isEmpty()) {
+						defRepo.save(tempDefect);
+					}
+					else {
+						tempDefectInstance.setDefect(defList.get(0));
+					}
+					//tempDefectInstance.setApp(tempApp);
+					//tempDefectInstance.setDefect(tempDefect);
 					tempDefectInstance.setLogfile(templogfile);
 					
-					if (!defList.contains(tempDefect)) {
-						defList.add(tempDefect);
-					}
-					if (!appList.contains(tempApp)) {
-						appList.add(tempApp);
-					}
+				
 					defInsList.add(tempDefectInstance);
 					
 	
@@ -123,14 +128,15 @@ public class LogFileRouting {
 		System.out.println(Counter + " '" + searchStr + "' founded in log file " );
 		scanFile.close();
 		
-		defRepo.deleteAll();
+		
+		//defRepo.deleteAll();
 		logRepo.deleteAll();
-		appRepo.deleteAll();
+		//appRepo.deleteAll();
 		definsRepo.deleteAll();
 			
-		defRepo.saveAll(defList);
+		//defRepo.saveAll(defList);
 		logRepo.saveAll(logFList);
-		appRepo.saveAll(appList);
+		//appRepo.saveAll(appList);
 		definsRepo.saveAll(defInsList);
 }
 	

@@ -8,9 +8,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+
+//@NamedNativeQuery(name = "App.checkAppexist", 
+//		query = "select *"
+//		+ "from app ap"
+//		+ "where ap.name=:appName AND ap.type= :appType ")
+
 public class App {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +40,13 @@ public class App {
 
 //----------------------------------------getters and setters----------------------------------------------------------
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -51,18 +65,18 @@ public class App {
 
 //----------------------------------------------------------@Override-----------------------------------------------------------------
 	
-		@Override
-	  public boolean equals(Object object)
-	  {
-	      boolean sameSame = false;
-
-	      if (object != null && object instanceof Defect)
-	      {
-	          sameSame = (this.getName() == ((App) object).getName() && this.getType() == ((App) object).getType());
-	      }
-
-	      return sameSame;
-	  }
+//		@Override
+//	  public boolean equals(Object object)
+//	  {
+//	      boolean sameSame = false;
+//
+//	      if (object != null && object instanceof App)
+//	      {
+//	          sameSame = (this.getName() == ((App) object).getName() && this.getType() == ((App) object).getType());
+//	      }
+//
+//	      return sameSame;
+//	  }
 
 	}
 
