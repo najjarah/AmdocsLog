@@ -1,13 +1,13 @@
 package com.example.DataBase.Repository;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.persistence.NamedNativeQuery;
+
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+
 
 import com.example.DataBase.domain.App;
 

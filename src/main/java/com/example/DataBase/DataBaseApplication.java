@@ -2,18 +2,15 @@ package com.example.DataBase;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.context.annotation.Bean;
 
 import com.example.DataBase.Repository.AppRepository;
 import com.example.DataBase.Repository.DefectInstanceRepository;
 import com.example.DataBase.Repository.DefectRepository;
 import com.example.DataBase.Repository.LogFileRepository;
+import com.example.DataBase.Repository.SolutionRepository;
 import com.example.DataBase.Routing.LogFileRouting;
 
 import java.io.File;
@@ -35,6 +32,8 @@ public class DataBaseApplication {
   @Autowired 
   private DefectInstanceRepository defectInstanceRepository;
 	
+  @Autowired 
+  private SolutionRepository solutionRepository;
 	  
 	public static void main(String[] args) {
 		SpringApplication.run(DataBaseApplication.class, args);
@@ -44,9 +43,9 @@ public class DataBaseApplication {
        return args -> {
     	   
     	   String searchStr = "Caused by";
-   			File file = new File("C:\\Users\\Rental-Media\\Desktop\\CMServer.20170914_2028.log");
+   			File file = new File("C:\\Users\\Rental-Media\\Desktop\\CMServer.20170924_1557.log");
    			LogFileRouting routingtotables = new LogFileRouting();
-   			routingtotables.SearchDefects(file, searchStr,appRepository,defectRepository, logFileRepository,defectInstanceRepository);
+   			routingtotables.SearchDefects(file, searchStr,appRepository,defectRepository, logFileRepository,defectInstanceRepository, solutionRepository);
    			
    		
        };

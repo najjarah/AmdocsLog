@@ -20,7 +20,7 @@ public class Solution {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "solution")
     private List<Defect> defects;
 	
-	String name;
+	String sname;
 	String description;
 
 //-------------------------------------------------constructors-------------------------------------------------------------------------
@@ -28,9 +28,9 @@ public class Solution {
 	public Solution() { }
 	
 	
-	public Solution(long id, String name, String description) {
+	public Solution(String name, String description) {
 		super();
-		this.name = name;
+		this.sname = name;
 		this.description = description;
 	}
 	
@@ -47,11 +47,11 @@ public class Solution {
 	}
 
 	public String getName() {
-		return name;
+		return sname;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.sname = name;
 	}
 
 	public String getDescription() {

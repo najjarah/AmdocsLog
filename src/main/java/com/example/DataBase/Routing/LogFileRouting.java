@@ -9,10 +9,12 @@ import com.example.DataBase.Repository.AppRepository;
 import com.example.DataBase.Repository.DefectInstanceRepository;
 import com.example.DataBase.Repository.DefectRepository;
 import com.example.DataBase.Repository.LogFileRepository;
+import com.example.DataBase.Repository.SolutionRepository;
 import com.example.DataBase.domain.App;
 import com.example.DataBase.domain.Defect;
 import com.example.DataBase.domain.DefectInstance;
 import com.example.DataBase.domain.LogFile;
+import com.example.DataBase.domain.Solution;
 
 //@RestController
 public class LogFileRouting {
@@ -26,6 +28,7 @@ public class LogFileRouting {
 	public List<App> appList = new ArrayList<App>();
 	public List<DefectInstance> defInsList = new ArrayList<DefectInstance>();
 	public List<LogFile> logFList = new ArrayList<LogFile>();
+	public List<Solution> solList = new ArrayList<Solution>();
 	
 //	  @Autowired 
 //      private AppRepository appRepository;
@@ -46,7 +49,7 @@ public class LogFileRouting {
 		
 //----------------------------------------------------------controller methods-----------------------------------------------------------
 	
-	public void SearchDefects(File file, String searchStr,AppRepository appRepo, DefectRepository defRepo, LogFileRepository logRepo, DefectInstanceRepository definsRepo) throws Exception 
+	public void SearchDefects(File file, String searchStr,AppRepository appRepo, DefectRepository defRepo, LogFileRepository logRepo, DefectInstanceRepository definsRepo, SolutionRepository solRepo) throws Exception 
 	
 	{
 
@@ -55,7 +58,7 @@ public class LogFileRouting {
 		Scanner scanFile = new Scanner(file);
 		String line = scanFile.nextLine().toString();
 		LogFile templogfile = new LogFile(file.getName(),"today","now");
-		
+		Solution tempsol = new Solution("Magic solution","turn of your device");
 		
 		
 		while (scanFile.hasNext()) {
@@ -75,6 +78,7 @@ public class LogFileRouting {
 					String defCode = arr[ErrorPosition].substring(pos + 1, arr[ErrorPosition].length() - 1);
 					
 					tempDefect.setErrorCode(defCode);
+					tempDefect.setSolution(tempsol);
 					tempApp.setName(ProgramName);
 					
 					
@@ -96,24 +100,47 @@ public class LogFileRouting {
 					else
 						tempApp.setType("Custom");
 					
+					solList = solRepo.checkSolexist(tempsol.getName(), tempsol.getDescription());
+					if(solList.isEmpty()) {
+						solRepo.save(tempsol);
+						tempDefect.setSolution(tempsol);
+					}
+					else {
+						tempDefect.setSolution(solList.get(0));
+					}
+					
+					//check if app exist in database
 					appList = appRepo.checkAppexist(tempApp.getName() ,tempApp.getType() );
 					if(appList.isEmpty()) {
 						appRepo.save(tempApp);
+						tempDefectInstance.setApp(tempApp);
 					}
 					else {
 						tempDefectInstance.setApp(appList.get(0));
-					}
+					} 
 					
+					//check if defect exist in database
 					defList = defRepo.checkDefectexist(tempDefect.getErrorCode());
 					if(defList.isEmpty()) {
 						defRepo.save(tempDefect);
+						tempDefectInstance.setDefect(tempDefect);
 					}
 					else {
 						tempDefectInstance.setDefect(defList.get(0));
 					}
+					
+					//check if logfile exist in database
+					logFList = logRepo.checkLogexist(templogfile.getName());
+					if(logFList.isEmpty()) {
+						logRepo.save(templogfile);
+						tempDefectInstance.setLogfile(templogfile);
+					}
+					else {
+						tempDefectInstance.setLogfile(logFList.get(0));
+					}
 					//tempDefectInstance.setApp(tempApp);
 					//tempDefectInstance.setDefect(tempDefect);
-					tempDefectInstance.setLogfile(templogfile);
+					//tempDefectInstance.setLogfile(templogfile);
 					
 				
 					defInsList.add(tempDefectInstance);
@@ -130,12 +157,12 @@ public class LogFileRouting {
 		
 		
 		//defRepo.deleteAll();
-		logRepo.deleteAll();
+		//logRepo.deleteAll();
 		//appRepo.deleteAll();
-		definsRepo.deleteAll();
+		//definsRepo.deleteAll();
 			
 		//defRepo.saveAll(defList);
-		logRepo.saveAll(logFList);
+		//logRepo.saveAll(logFList);
 		//appRepo.saveAll(appList);
 		definsRepo.saveAll(defInsList);
 }

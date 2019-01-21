@@ -5,9 +5,16 @@ public class ViewDefects {
 	String appType;
 	String defCode;
 	String severity;
+	String solname;
 
 //---------------------------------------------------------------getters and setters---------------------------------------------------------
 	
+	public String getsolname() {
+		return solname;
+	}
+	public void setsolname(String solname) {
+		this.solname = solname;
+	}
 	public String getAppName() {
 		return appName;
 	}
@@ -37,12 +44,13 @@ public class ViewDefects {
 	
 	public ViewDefects() {}
 	
-	public ViewDefects(String appName, String appType, String defCode, String severity) {
+	public ViewDefects(String appName, String appType, String defCode, String severity, String solname) {
 		super();
 		this.appName = appName;
 		this.appType = appType;
 		this.defCode = defCode;
 		this.severity = severity;
+		this.solname = solname;
 	}
 	
 	

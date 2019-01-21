@@ -29,19 +29,20 @@ public class Defect {
     private List<DefectInstance> defects;
     
 
-    //-----------------------------------------Constructors---------------------------------------------------
+//----------------------------------------------------Constructors-----------------------------------------------------------
   
     public Defect() {}
 
-    public Defect(String Severity, String errorCode) {
+    public Defect(String Severity, String errorCode, Solution solution) {
       super();
       this.severity = Severity;
       this.errorCode = errorCode;
-    
+      this.solution = solution;
     }
 
-    //-----------------------------------------getters and setters---------------------------------------------
-	public String getSeverity() {
+//--------------------------------------------------getters and setters-----------------------------------------------------
+	
+    public String getSeverity() {
 		return severity;
 	}
 	public void setSeverity(String severity) {

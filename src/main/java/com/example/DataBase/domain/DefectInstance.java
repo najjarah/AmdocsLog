@@ -23,16 +23,16 @@ import javax.persistence.ColumnResult;
 	                @ColumnResult(name="type", type = String.class),
 	                @ColumnResult(name="error_code", type = String.class),
 	                @ColumnResult(name="severity", type = String.class),
-	              //  @ColumnResult(name="Sol", type = String.class)
+	                @ColumnResult(name="sname", type = String.class)
 	            }
 	        )
 	    }
 	)
 
 @NamedNativeQuery(name = "DefectInstance.getViewDefects", 
-		query = "select ap.name, ap.type, d.error_code, d.severity "
-		+ "from app ap, defect d, defect_instance di"
-		+ " where ap.id=di.appid and d.id=di.defectid ", resultSetMapping = "DefectViewMapping")
+		query = "select ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
+		+ "from app ap, defect d, defect_instance di, solution s"
+		+ " where ap.id=di.appid and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewMapping")
 
 
 public class DefectInstance  {
