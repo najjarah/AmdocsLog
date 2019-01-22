@@ -9,9 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.ConstructorResult;
+
+import java.math.BigInteger;
+
 import javax.persistence.ColumnResult;
 
 @Entity
+
+//------------------------------------------------------sql result mapping------------------------------------------------------------
 
 @SqlResultSetMapping(
 		name="DefectViewMapping",
@@ -29,10 +34,33 @@ import javax.persistence.ColumnResult;
 	    }
 	)
 
+@SqlResultSetMapping(
+		name="SeverityPercentMapping",
+	    classes={
+	        @ConstructorResult(
+	        		targetClass=SeverityPercent.class,
+	            columns={
+	                @ColumnResult(name="severity", type = String.class),
+	                @ColumnResult(name="defnum", type = BigInteger.class),
+	                @ColumnResult(name="percentage", type = String.class)
+	            }
+	        )
+	    }
+	)
+
+//------------------------------------------------------sql query---------------------------------------------------------------------
+
 @NamedNativeQuery(name = "DefectInstance.getViewDefects", 
 		query = "select ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
 		+ "from app ap, defect d, defect_instance di, solution s"
 		+ " where ap.id=di.appid and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewMapping")
+
+
+@NamedNativeQuery(name = "DefectInstance.getSeverityPercent",
+		query ="select d.severity, count(*) As defnum,concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage"
+		+" from defect d, defect_instance di"
+		+" where d.id=di.defectid"
+		+" group by severity", resultSetMapping = "SeverityPercentMapping")
 
 
 public class DefectInstance  {

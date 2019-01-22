@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 
 import com.example.DataBase.domain.DefectInstance;
+import com.example.DataBase.domain.SeverityPercent;
 import com.example.DataBase.domain.ViewDefects;
 
 public interface DefectInstanceRepository extends CrudRepository<DefectInstance, Long>{
@@ -14,5 +15,8 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 	
 	@Query(nativeQuery = true)
 	ArrayList<ViewDefects> getViewDefects();
+	
+	@Query(nativeQuery = true)
+	ArrayList<SeverityPercent> getSeverityPercent();
 
 }

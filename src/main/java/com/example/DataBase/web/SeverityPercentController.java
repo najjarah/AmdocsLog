@@ -7,16 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DataBase.Repository.DefectInstanceRepository;
-import com.example.DataBase.domain.ViewDefects;
+import com.example.DataBase.domain.SeverityPercent;
 
 @RestController
-public class ViewDefectController {
+public class SeverityPercentController {
 	@Autowired
 	private DefectInstanceRepository repository;
 
-	@RequestMapping("/ViewDefects")
-	public ArrayList<ViewDefects> getViewDefects() {
-		return repository.getViewDefects();
+	@RequestMapping("/SeverityPercent")
+	public ArrayList<SeverityPercent> getSeverityPercent() {
+		return repository.getSeverityPercent();
 	}
 }
-
