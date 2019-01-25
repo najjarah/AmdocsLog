@@ -80,8 +80,9 @@ import javax.persistence.ColumnResult;
 
 @NamedNativeQuery(name = "DefectInstance.getAppPercent", 
 		query = "select ap.name, count(*) As defnum,concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage"
-		+ "from app ap, defect_instance di" + "where ap.id=di.appid"
-		+ "group by ap.name", resultSetMapping = "AppPercentMapping")
+		+ " from app ap, defect_instance di" 
+		+ " where ap.id=di.appid"
+		+ " group by ap.name", resultSetMapping = "AppPercentMapping")
 
 public class DefectInstance  {
 

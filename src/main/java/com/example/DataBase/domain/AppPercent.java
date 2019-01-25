@@ -10,15 +10,8 @@ public class AppPercent {
 	private BigInteger defnum;
 	private String percentage;
 	
-	public AppPercent() {}
+//-------------------------------------------------getters and setters-------------------------------------------------------------
 	
-	public AppPercent(String name, BigInteger defnum, String percentage) {
-		super();
-		this.name = name;
-		this.defnum = defnum;
-		this.percentage = percentage;
-		
-	}
 	public String getName() {
 		return name;
 	}
@@ -37,5 +30,16 @@ public class AppPercent {
 	public void setPercentage(String percentage) {
 		this.percentage = percentage;
 	}
+
+//----------------------------------------------------constructors----------------------------------------------------------------
 	
+	public AppPercent() {}
+	
+	public AppPercent(String name, BigInteger defnum, String percentage) {
+		super();
+		this.name = name;
+		this.defnum = defnum;
+		this.percentage = percentage;
+		
+}
 }
