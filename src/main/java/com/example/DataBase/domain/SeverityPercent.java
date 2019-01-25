@@ -7,10 +7,11 @@ public class SeverityPercent {
 	private String severity;
 	private BigInteger defnum;
 	private String percentage;
-	public String getSeverity() 
+	
 	
 //----------------------------------------------getters and setters-------------------------------------------------------------------
 	
+	public String getSeverity() 
 	{
 		return severity;
 	}
