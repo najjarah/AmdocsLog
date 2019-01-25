@@ -57,8 +57,9 @@ public class ViewDefects {
 	
 	public ViewDefects() {}
 	
-	public ViewDefects(String appName, String appType, String defCode, String severity, String solname) {
+	public ViewDefects(long seqid,String appName, String appType, String defCode, String severity, String solname) {
 		super();
+		this.seqid = seqid;
 		this.appName = appName;
 		this.appType = appType;
 		this.defCode = defCode;
