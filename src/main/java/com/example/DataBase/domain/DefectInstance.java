@@ -24,7 +24,7 @@ import javax.persistence.ColumnResult;
 	        @ConstructorResult(
 	        		targetClass=ViewDefects.class,
 	            columns={
-	            	@ColumnResult(name="id", type = BigInteger.class),
+	            	@ColumnResult(name="id", type = long.class),
 	            	@ColumnResult(name="name", type = String.class),
 	                @ColumnResult(name="type", type = String.class),
 	                @ColumnResult(name="error_code", type = String.class),

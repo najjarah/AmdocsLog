@@ -8,8 +8,6 @@ public class ViewDefects {
 	long seqid;
 	String appName;
 	String appType;
-	
-
 	String defCode;
 	String severity;
 	String solname;
@@ -22,10 +20,10 @@ public class ViewDefects {
 		this.seqid = seqid;
 	}
 	
-	public String getsolname() {
+	public String getSolname() {
 		return solname;
 	}
-	public void setsolname(String solname) {
+	public void setSolname(String solname) {
 		this.solname = solname;
 	}
 	public String getAppName() {
