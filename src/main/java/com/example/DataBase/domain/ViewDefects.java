@@ -1,6 +1,12 @@
 package com.example.DataBase.domain;
 
+import java.math.BigInteger;
+
 public class ViewDefects {
+	
+
+
+	BigInteger seqId;
 	String appName;
 	String appType;
 	String defCode;
@@ -39,13 +45,27 @@ public class ViewDefects {
 	public void setSeverity(String severity) {
 		this.severity = severity;
 	}
+	
+	public BigInteger getSeqid() {
+		return seqId;
+	}
+	public void setSeqid(BigInteger seqid) {
+		this.seqId = seqid;
+	}
+	public String getSolname() {
+		return solname;
+	}
+	public void setSolname(String solname) {
+		this.solname = solname;
+	}
 
 //------------------------------------------------------constructors------------------------------------------------------------------------
 	
 	public ViewDefects() {}
 	
-	public ViewDefects(String appName, String appType, String defCode, String severity, String solname) {
+	public ViewDefects(BigInteger seqid, String appName, String appType, String defCode, String severity, String solname) {
 		super();
+		this.seqId = seqid;
 		this.appName = appName;
 		this.appType = appType;
 		this.defCode = defCode;
