@@ -18,22 +18,22 @@ import javax.persistence.ColumnResult;
 
 //------------------------------------------------------sql result mapping------------------------------------------------------------
 
-//@SqlResultSetMapping(
-//		name="DefectViewMapping",
-//	    classes={
-//	        @ConstructorResult(
-//	        		targetClass=ViewDefects.class,
-//	            columns={
-//	            	@ColumnResult(name="id", type = long.class),
-//	            	@ColumnResult(name="name", type = String.class),
-//	                @ColumnResult(name="type", type = String.class),
-//	                @ColumnResult(name="error_code", type = String.class),
-//	                @ColumnResult(name="severity", type = String.class),
-//	                @ColumnResult(name="sname", type = String.class)
-//	            }
-//	        )
-//	    }
-//	)
+@SqlResultSetMapping(
+		name="DefectViewMapping",
+	    classes={
+	        @ConstructorResult(
+	        		targetClass=ViewDefects.class,
+	            columns={
+	            	@ColumnResult(name="id", type = long.class),
+	            	@ColumnResult(name="name", type = String.class),
+	                @ColumnResult(name="type", type = String.class),
+	                @ColumnResult(name="error_code", type = String.class),
+	                @ColumnResult(name="severity", type = String.class),
+	                @ColumnResult(name="sname", type = String.class)
+	            }
+	        )
+	    }
+	)
 
 @SqlResultSetMapping(
 		name="SeverityPercentMapping",
@@ -65,10 +65,10 @@ import javax.persistence.ColumnResult;
 
 //------------------------------------------------------sql query---------------------------------------------------------------------
 
-//@NamedNativeQuery(name = "DefectInstance.getViewDefects", 
-//		query = "select di.id, ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
-//		+ "from app ap, defect d, defect_instance di, solution s"
-//		+ " where ap.id=di.appid and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewMapping")
+@NamedNativeQuery(name = "DefectInstance.getViewDefects", 
+		query = "select di.id, ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
+		+ "from app ap, defect d, defect_instance di, solution s"
+		+ " where ap.id=di.appid and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewMapping")
 
 
 @NamedNativeQuery(name = "DefectInstance.getSeverityPercent",
