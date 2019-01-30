@@ -123,7 +123,7 @@ query = "select di.id, ap.name, ap.type, d.error_code, d.severity, s.sname, s.de
 @NamedNativeQuery(name = "DefectInstance.getSeverityPercentApp",
 query ="select d.severity, count(*) As defnum,concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage"
 +" from defect d, defect_instance di"
-+" where d.id=di.defectid and ((di.app)=:appName)"
++" where d.id=di.defectid and ((di.app)=:appName1)"
 +" group by severity", resultSetMapping = "SeverityPercentAppMapping")
 public class DefectInstance  {
 
