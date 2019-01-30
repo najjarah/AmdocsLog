@@ -99,7 +99,7 @@ import javax.persistence.ColumnResult;
 	        @ConstructorResult(
 	        		targetClass=AppPercentApp.class,
 	            columns={
-	                @ColumnResult(name="name", type = String.class),
+	                @ColumnResult(name="error_code", type = String.class),
 	                @ColumnResult(name="defnum", type = BigInteger.class),
 	                @ColumnResult(name="percentage", type = String.class)
 	            }
@@ -140,7 +140,7 @@ query ="select d.severity, count(*) As defnum,concat(cast(cast( count(*) as floa
 +" group by severity", resultSetMapping = "SeverityPercentAppMapping")
 
 @NamedNativeQuery(name = "DefectInstance.getAppPercentApp", 
-query = "select ap.name, count(*) As defnum,concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage"
+query = "select d.error_code, count(*) As defnum,concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage"
 + " from app ap, defect_instance di, defect d" 
 + " where ap.id=di.appid"
 + " group by ap.name", resultSetMapping = "AppPercentAppMapping")
