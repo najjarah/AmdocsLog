@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.example.DataBase.domain.AppPercent;
+import com.example.DataBase.domain.AppPercentApp;
 import com.example.DataBase.domain.DefectInstance;
 import com.example.DataBase.domain.SeverityPercent;
 import com.example.DataBase.domain.SeverityPercentApp;
@@ -28,4 +29,7 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 	
 	@Query(nativeQuery = true)
 	ArrayList<SeverityPercentApp> getSeverityPercentApp(@Param("appName1") String appName1);
+	
+	@Query(nativeQuery = true)
+	ArrayList<AppPercentApp> getAppPercentApp(@Param("appName2") String appName2);
 }
