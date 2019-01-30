@@ -12,8 +12,8 @@ public class AppPercentApp {
 	public String geterrorCode() {
 		return errorCode;
 	}
-	public void seterrorCode(String name) {
-		this.errorCode = name;
+	public void seterrorCode(String errorCode) {
+		this.errorCode = errorCode;
 	}
 	public BigInteger getDefnum() {
 		return defnum;
@@ -32,9 +32,9 @@ public class AppPercentApp {
 	
 	public AppPercentApp() {}
 	
-	public AppPercentApp(String name, BigInteger defnum, String percentage) {
+	public AppPercentApp(String errorCode, BigInteger defnum, String percentage) {
 		super();
-		this.errorCode = name;
+		this.errorCode = errorCode;
 		this.defnum = defnum;
 		this.percentage = percentage;
 		

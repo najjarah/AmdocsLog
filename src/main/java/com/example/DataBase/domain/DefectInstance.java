@@ -99,7 +99,7 @@ import javax.persistence.ColumnResult;
 	        @ConstructorResult(
 	        		targetClass=AppPercent.class,
 	            columns={
-	                @ColumnResult(name="errorCode", type = String.class),
+	                @ColumnResult(name="error_code", type = String.class),
 	                @ColumnResult(name="defnum", type = BigInteger.class),
 	                @ColumnResult(name="percentage", type = String.class)
 	            }
