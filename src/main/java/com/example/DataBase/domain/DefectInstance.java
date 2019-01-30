@@ -97,7 +97,7 @@ import javax.persistence.ColumnResult;
 		name="AppPercentAppMapping",
 	    classes={
 	        @ConstructorResult(
-	        		targetClass=AppPercent.class,
+	        		targetClass=AppPercentApp.class,
 	            columns={
 	                @ColumnResult(name="error_code", type = String.class),
 	                @ColumnResult(name="defnum", type = BigInteger.class),
