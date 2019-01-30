@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.DataBase.Repository.DefectInstanceRepository;
 import com.example.DataBase.Repository.ViewDefectsRepository;
 import com.example.DataBase.domain.ViewDefects;
 import com.example.DataBase.domain.ViewDefectsApp;
@@ -17,7 +17,7 @@ public class ViewDefectController {
 	private ViewDefectsRepository repository;
 	
 	@Autowired
-	private ViewDefectsRepository repository1;
+	private DefectInstanceRepository repository1;
 
 	@RequestMapping("/ViewDefects")
 	public ArrayList<ViewDefects> getViewDefects() {

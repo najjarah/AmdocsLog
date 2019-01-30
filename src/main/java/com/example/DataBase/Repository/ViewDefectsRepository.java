@@ -14,8 +14,8 @@ public interface ViewDefectsRepository extends PagingAndSortingRepository<Defect
 	@Query(nativeQuery = true)
 	ArrayList<ViewDefects> getViewDefects();
 	
-	@Query(nativeQuery = true)
-	ArrayList<ViewDefectsApp> getViewDefectsApp();
+//	@Query(nativeQuery = true)
+//	ArrayList<ViewDefectsApp> getViewDefectsApp();
 }
  
 
