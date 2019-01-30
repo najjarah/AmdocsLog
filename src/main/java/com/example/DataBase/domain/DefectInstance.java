@@ -63,6 +63,23 @@ import javax.persistence.ColumnResult;
 	    }
 	)
 
+@SqlResultSetMapping(
+		name="DefectViewAppMapping",
+	    classes={
+	        @ConstructorResult(
+	        		targetClass=ViewDefects.class,
+	            columns={
+	            	@ColumnResult(name="id", type = long.class),
+	            	@ColumnResult(name="name", type = String.class),
+	                @ColumnResult(name="type", type = String.class),
+	                @ColumnResult(name="error_code", type = String.class),
+	                @ColumnResult(name="severity", type = String.class),
+	                @ColumnResult(name="sname", type = String.class)
+	            }
+	        )
+	    }
+	)
+
 //------------------------------------------------------sql query---------------------------------------------------------------------
 
 @NamedNativeQuery(name = "DefectInstance.getViewDefects", 
@@ -83,6 +100,11 @@ import javax.persistence.ColumnResult;
 		+ " from app ap, defect_instance di" 
 		+ " where ap.id=di.appid"
 		+ " group by ap.name", resultSetMapping = "AppPercentMapping")
+
+@NamedNativeQuery(name = "DefectInstance.getViewDefectsApp", 
+query = "select di.id, ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
++ "from app ap, defect d, defect_instance di, solution s"
++ " where ap.id=di.appid and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewAppMapping")
 
 public class DefectInstance  {
 
