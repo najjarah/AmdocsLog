@@ -3,6 +3,7 @@ package com.example.DataBase.web;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class ViewDefectController {
 	private ViewDefectsRepository repository;
 	
 	@Autowired
-	private ViewDefectsRepository repository1;
+	private DefectInstanceRepository repository1;
 
 	@RequestMapping("/ViewDefects")
 	public ArrayList<ViewDefects> getViewDefects() {
@@ -25,9 +26,9 @@ public class ViewDefectController {
 		
 	}
 	
-	@RequestMapping("/ViewDefectsApp")
-	public ArrayList<ViewDefectsApp> getViewDefectsApp() {
-		return repository1.getViewDefectsApp();
+	@RequestMapping("/ViewDefectsApp/{appName}")
+	public ArrayList<ViewDefectsApp> getViewDefectsApp(@PathVariable String appName) {
+		return repository1.getViewDefectsApp(appName);
 		
 	}
 

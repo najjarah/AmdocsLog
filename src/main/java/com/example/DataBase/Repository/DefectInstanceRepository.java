@@ -2,8 +2,10 @@ package com.example.DataBase.Repository;
 
 import java.util.ArrayList;
 
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.example.DataBase.domain.AppPercent;
 import com.example.DataBase.domain.DefectInstance;
@@ -20,6 +22,6 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 	@Query(nativeQuery = true)
 	ArrayList<AppPercent> getAppPercent();
 	
-//	@Query(nativeQuery = true)
-//	ArrayList<ViewDefectsApp> getViewDefectsApp();
+	@Query(nativeQuery = true)
+	ArrayList<ViewDefectsApp> getViewDefectsApp(@Param("appName") String appName);
 }
