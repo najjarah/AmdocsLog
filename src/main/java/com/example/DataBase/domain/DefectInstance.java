@@ -67,7 +67,7 @@ import javax.persistence.ColumnResult;
 		name="DefectViewAppMapping",
 	    classes={
 	        @ConstructorResult(
-	        		targetClass=ViewDefects.class,
+	        		targetClass=ViewDefectsApp.class,
 	            columns={
 	            	@ColumnResult(name="id", type = long.class),
 	            	@ColumnResult(name="name", type = String.class),
