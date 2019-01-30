@@ -2,8 +2,6 @@ package com.example.DataBase.domain;
 
 import java.math.BigInteger;
 
-
-
 public class AppPercent {
 	
 	private String name;
