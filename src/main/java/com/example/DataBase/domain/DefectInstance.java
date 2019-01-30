@@ -104,7 +104,7 @@ import javax.persistence.ColumnResult;
 @NamedNativeQuery(name = "DefectInstance.getViewDefectsApp", 
 query = "select di.id, ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
 + "from app ap, defect d, defect_instance di, solution s"
-+ " where ((ap.name=):appName) and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewAppMapping")
++ " where ((ap.name)=:appName) and d.id=di.defectid and s.id=d.idsolution", resultSetMapping = "DefectViewAppMapping")
 
 public class DefectInstance  {
 
