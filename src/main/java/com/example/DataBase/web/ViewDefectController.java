@@ -17,7 +17,7 @@ public class ViewDefectController {
 	private ViewDefectsRepository repository;
 	
 	@Autowired
-	private DefectInstanceRepository repository1;
+	private ViewDefectsRepository repository1;
 
 	@RequestMapping("/ViewDefects")
 	public ArrayList<ViewDefects> getViewDefects() {
