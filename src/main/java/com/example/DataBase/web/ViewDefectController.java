@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.felix.bundlerepository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ public class ViewDefectController {
 	@Autowired
 	private DefectInstanceRepository repository;
 
+	
+	
 	@RequestMapping("/ViewDefects/pages/{pageno}")
 	
 	
