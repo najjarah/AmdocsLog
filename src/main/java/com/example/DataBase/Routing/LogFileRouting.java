@@ -30,6 +30,8 @@ public class LogFileRouting {
 	public List<LogFile> logFList = new ArrayList<LogFile>();
 	public List<Solution> solList = new ArrayList<Solution>();
 	
+	
+
 //	  @Autowired 
 //      private AppRepository appRepository;
 //
@@ -52,7 +54,7 @@ public class LogFileRouting {
 	public void SearchDefects(File file, String searchStr,AppRepository appRepo, DefectRepository defRepo, LogFileRepository logRepo, DefectInstanceRepository definsRepo, SolutionRepository solRepo) throws Exception 
 	
 	{
-
+		definsRepo.deleteAll();
 		
 		int Counter = 0;
 		Scanner scanFile = new Scanner(file);
@@ -165,6 +167,7 @@ public class LogFileRouting {
 		//logRepo.saveAll(logFList);
 		//appRepo.saveAll(appList);
 		definsRepo.saveAll(defInsList);
+
 }
 	
 
