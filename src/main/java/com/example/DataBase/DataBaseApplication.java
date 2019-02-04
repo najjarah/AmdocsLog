@@ -43,7 +43,7 @@ public class DataBaseApplication {
        return args -> {
     	   
     	   String searchStr = "Caused by";
-   			File file = new File("CMServer.20170914_2028.log");
+   			File file = new File("CMServer.20170924_1557.log");
    			LogFileRouting routingtotables = new LogFileRouting();
    			routingtotables.SearchDefects(file, searchStr,appRepository,defectRepository, logFileRepository,defectInstanceRepository, solutionRepository);
    			
