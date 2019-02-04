@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.DataBase.Repository.DefectInstanceRepository;
 import com.example.DataBase.domain.ViewDefects;
+import com.example.DataBase.domain.ViewDefectsApp;
 
 @RestController
 public class ViewDefectController {
 	@Autowired
 	private DefectInstanceRepository repository;
+
+@Autowired
+	private DefectInstanceRepository repository1;
 
 	
 	
@@ -31,6 +35,12 @@ public class ViewDefectController {
     		HttpServletRequest req, HttpServletResponse res) throws ServletException {
 		
 		return repository.getViewDefects(new PageRequest(pageno,10));
+		
+	}
+
+	@RequestMapping("/ViewDefectsApp/{appName}")
+	public ArrayList<ViewDefectsApp> getViewDefectsApp(@PathVariable String appName) {
+		return repository1.getViewDefectsApp(appName);
 		
 	}
 
