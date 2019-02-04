@@ -12,6 +12,7 @@ import com.example.DataBase.domain.AppPercentApp;
 import com.example.DataBase.domain.DefectInstance;
 import com.example.DataBase.domain.SeverityPercent;
 import com.example.DataBase.domain.SeverityPercentApp;
+import com.example.DataBase.domain.ViewDefects;
 import com.example.DataBase.domain.ViewDefectsApp;
 
 
@@ -23,6 +24,9 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 
 	@Query(nativeQuery = true)
 	ArrayList<AppPercent> getAppPercent();
+	
+	@Query(nativeQuery = true)
+	ArrayList<ViewDefects> getViewDefects();
 	
 	@Query(nativeQuery = true)
 	ArrayList<ViewDefectsApp> getViewDefectsApp(@Param("appName") String appName);
