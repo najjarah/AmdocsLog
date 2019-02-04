@@ -3,6 +3,7 @@ package com.example.DataBase.Repository;
 import java.util.ArrayList;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -26,7 +27,7 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 	ArrayList<AppPercent> getAppPercent();
 	
 	@Query(nativeQuery = true)
-	ArrayList<ViewDefects> getViewDefects(Page page);
+	ArrayList<ViewDefects> getViewDefects(PageRequest pageRequest);
 	
 	@Query(nativeQuery = true)
 	ArrayList<ViewDefectsApp> getViewDefectsApp(@Param("appName") String appName);
