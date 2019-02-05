@@ -43,6 +43,11 @@ public class ViewDefectController {
 		return repository1.getViewDefectsApp(appName);
 		
 	}
+	@RequestMapping("/ViewDefectsSeverity/{SeverityName}")
+	public ArrayList<ViewDefectsApp> getViewDefectsSeverity(@PathVariable String SeverityName) {
+		return repository1.getViewDefectsApp(SeverityName);
+		
+	}
 
 }
 
