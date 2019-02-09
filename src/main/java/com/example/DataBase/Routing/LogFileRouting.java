@@ -1,7 +1,9 @@
 package com.example.DataBase.Routing;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -55,11 +57,16 @@ public class LogFileRouting {
 	
 	{
 		
+
 		
 		int Counter = 0;
 		Scanner scanFile = new Scanner(file);
 		String line = scanFile.nextLine().toString();
-		LogFile templogfile = new LogFile(file.getName(),"today","now");
+		
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
+		
+		LogFile templogfile = new LogFile(file.getName(),dateformat.format(Calendar.getInstance().getTime()),timeformat.format(Calendar.getInstance().getTime()));
 		Solution tempsol = new Solution("Magic solution","turn of your device");
 		
 		
