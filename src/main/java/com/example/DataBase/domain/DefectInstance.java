@@ -188,8 +188,9 @@ query = "select ap.name, count(*) As defnum,"
 
 @NamedNativeQuery(name = "DefectInstance.getViewDefectsApp", 
 query = "select di.id, ap.name, ap.type, d.error_code, d.severity, s.sname, s.description "
-+ "from app ap, defect d, defect_instance di, solution s"
-+ " where ((ap.name)=:appName) and d.id=di.defectid and s.id=d.idsolution ", resultSetMapping = "DefectViewAppMapping")
+		+ "from app ap, defect d, defect_instance di, solution s , log_file l"
+		+ " where ((ap.name)=:appName) and d.id=di.defectid and s.id=d.idsolution and l.id=di.log_fileid and  ((l.fdate)=:todayDate) "
+		+" LIMIT (:limit) OFFSET (:offset)", resultSetMapping = "DefectViewAppMapping")
 
 @NamedNativeQuery(name = "DefectInstance.getSeverityPercentApp",
 query ="select d.severity, count(*) As defnum,concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage"
