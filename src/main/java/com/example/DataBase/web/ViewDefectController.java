@@ -25,6 +25,9 @@ public class ViewDefectController {
 @Autowired
 	private DefectInstanceRepository repository1;
 
+@Autowired
+private DefectInstanceRepository repository2;
+
 	
 	
 	@RequestMapping("/ViewDefects/pages/{pageno}")
@@ -43,9 +46,9 @@ public class ViewDefectController {
 		return repository1.getViewDefectsApp(appName);
 		
 	}
-	@RequestMapping("/ViewDefectsSeverity/{SeverityName}")
-	public ArrayList<ViewDefectsApp> getViewDefectsSeverity(@PathVariable String SeverityName) {
-		return repository1.getViewDefectsApp(SeverityName);
+	@RequestMapping("/ViewDefectsSeverity/{severityName}")
+	public ArrayList<ViewDefects> getViewDefectsSeverity(@PathVariable String severityName) {
+		return repository2.getViewDefectsSeverity(severityName);
 		
 	}
 
