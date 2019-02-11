@@ -158,6 +158,19 @@ import javax.persistence.ColumnResult;
         }
     )
 
+@SqlResultSetMapping(
+        name="WeeklyViewMapping",
+        classes={
+            @ConstructorResult(
+                    targetClass=WeeklyView.class,
+                columns={
+                    @ColumnResult(name="app_name", type = String.class),
+                    @ColumnResult(name="total_weekly", type = int.class)
+                }
+            )
+        }
+    )
+
 //------------------------------------------------------sql query---------------------------------------------------------------------
 
 
@@ -227,7 +240,13 @@ query = "select ap.name, count(*) As defnum,"
 +" from app ap, defect_instance di, defect d"
 +" where ap.id=di.appid and d.id=di.defectid and ((d.severity)=:severityName2)"
 +" group by ap.name", resultSetMapping = "AppPercentSeverityMapping")
+//-----------------------------------------------------------------
 
+@NamedNativeQuery(name = "DefectInstance.getWeeklyView", 
+query = "select ap.name as app_name,  count(*) As total_weekly"
++ " from app ap, defect_instance di, defect d, log_file l" 
++ " where ap.id=di.appid and d.id=di.defectid and l."
++" group by ap.name" ,resultSetMapping = "WeeklyViewMapping")
 public class DefectInstance  {
 
 

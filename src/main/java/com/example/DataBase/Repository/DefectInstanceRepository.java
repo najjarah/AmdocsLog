@@ -17,6 +17,7 @@ import com.example.DataBase.domain.SeverityPercentApp;
 import com.example.DataBase.domain.SeverityPercentSeverity;
 import com.example.DataBase.domain.ViewDefects;
 import com.example.DataBase.domain.ViewDefectsApp;
+import com.example.DataBase.domain.WeeklyView;
 
 
 public interface DefectInstanceRepository extends CrudRepository<DefectInstance, Long>{
@@ -47,4 +48,7 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 	
 	@Query(nativeQuery = true)
 	ArrayList<AppPercentSeverity> getAppPercentSeverity(@Param("severityName2") String severityName2);
+	
+	@Query(nativeQuery = true)
+	ArrayList<WeeklyView> getWeeklyView();
 }
