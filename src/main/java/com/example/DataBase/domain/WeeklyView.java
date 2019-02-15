@@ -5,14 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
 public class WeeklyView {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String appName;
-    private int totalWeekly;
+	private String sName;
+    private String totalWeekly;
     //------------------------------------
 	public long getId() {
 		return id;
@@ -20,23 +19,24 @@ public class WeeklyView {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getAppName() {
-		return appName;
+	public String getsName() {
+		return sName;
 	}
-	public void setAppName(String appName) {
-		this.appName = appName;
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
-	public int getTotalWeekly() {
+	
+	public String getTotalWeekly() {
 		return totalWeekly;
 	}
-	public void setTotalWeekly(int totalWeekly) {
+	public void setTotalWeekly(String totalWeekly) {
 		this.totalWeekly = totalWeekly;
 	}
 	
     public WeeklyView() {}
-	public WeeklyView(String appName, int totalWeekly) {
+	public WeeklyView(String sName, String totalWeekly) {
 		super();
-		this.appName = appName;
+		this.sName = sName;
 		this.totalWeekly = totalWeekly;
 	}
 

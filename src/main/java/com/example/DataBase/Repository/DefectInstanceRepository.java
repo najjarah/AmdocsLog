@@ -50,5 +50,10 @@ public interface DefectInstanceRepository extends CrudRepository<DefectInstance,
 	ArrayList<AppPercentSeverity> getAppPercentSeverity(@Param("severityName2") String severityName2);
 	
 	@Query(nativeQuery = true)
-	ArrayList<WeeklyView> getWeeklyView();
+	ArrayList<WeeklyView> getWeeklyView1(@Param("currdate") String currdate, @Param("weekbefore") String weekbefore);
+	
+	@Query(nativeQuery = true)
+	ArrayList<WeeklyView> getWeeklyView2(@Param("currdate") String currdate, @Param("weekbefore") String weekbefore);
+	@Query(nativeQuery = true)
+	ArrayList<WeeklyView> getWeeklyView3(@Param("currdate") String currdate, @Param("weekbefore") String weekbefore);
 }

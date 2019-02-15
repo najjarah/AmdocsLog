@@ -159,18 +159,43 @@ import javax.persistence.ColumnResult;
     )
 
 @SqlResultSetMapping(
-        name="WeeklyViewMapping",
+        name="WeeklyViewMapping1",
         classes={
             @ConstructorResult(
                     targetClass=WeeklyView.class,
                 columns={
-                    @ColumnResult(name="app_name", type = String.class),
-                    @ColumnResult(name="total_weekly", type = int.class)
+                    @ColumnResult(name="s_name", type = String.class),
+                    @ColumnResult(name="total_weekly", type = String.class)
                 }
             )
         }
     )
 
+@SqlResultSetMapping(
+        name="WeeklyViewMapping2",
+        classes={
+            @ConstructorResult(
+                    targetClass=WeeklyView.class,
+                columns={
+                    @ColumnResult(name="s_name", type = String.class),
+                    @ColumnResult(name="total_weekly", type = String.class)
+                }
+            )
+        }
+    )
+
+@SqlResultSetMapping(
+        name="WeeklyViewMapping3",
+        classes={
+            @ConstructorResult(
+                    targetClass=WeeklyView.class,
+                columns={
+                    @ColumnResult(name="s_name", type = String.class),
+                    @ColumnResult(name="total_weekly", type = String.class)
+                }
+            )
+        }
+    )
 //------------------------------------------------------sql query---------------------------------------------------------------------
 
 
@@ -242,11 +267,25 @@ query = "select ap.name, count(*) As defnum,"
 +" group by ap.name", resultSetMapping = "AppPercentSeverityMapping")
 //-----------------------------------------------------------------
 
-@NamedNativeQuery(name = "DefectInstance.getWeeklyView", 
-query = "select ap.name as app_name,  count(*) As total_weekly"
-+ " from app ap, defect_instance di, defect d, log_file l" 
-+ " where ap.id=di.appid and d.id=di.defectid and l."
-+" group by ap.name" ,resultSetMapping = "WeeklyViewMapping")
+@NamedNativeQuery(name = "DefectInstance.getWeeklyView2", 
+query = "select d.severity as s_name,  concat(cast(cast(count(*) as float)/ cast((select count(*) from defect_instance di, log_file f where f.id=di.log_fileid and f.fdate BETWEEN :weekbefore AND :currdate) as float)*100 as decimal(7,2)),'%') AS total_weekly"
++ " from defect_instance di, defect d, log_file f" 
++ " where di.log_fileid=f.id and d.id=di.defectid and f.fdate BETWEEN :weekbefore AND :currdate "
++" group by d.severity" ,resultSetMapping = "WeeklyViewMapping2")
+//concat(cast(cast( count(*) as float)/ cast((select count(*) from defect_instance di) as float)*100 as decimal(7,2)),'%') AS percentage
+@NamedNativeQuery(name = "DefectInstance.getWeeklyView1", 
+query = "select d.severity as s_name,   concat(cast(cast(count(*) as float)/ cast((select count(*) from defect_instance di, log_file f where f.id=di.log_fileid and f.fdate BETWEEN :weekbefore AND :currdate) as float)*100 as decimal(7,2)),'%') AS total_weekly"
++ " from defect_instance di, defect d, log_file f" 
++ " where di.log_fileid=f.id and d.id=di.defectid and f.fdate BETWEEN :weekbefore AND :currdate"
++" group by d.severity" ,resultSetMapping = "WeeklyViewMapping1")
+
+
+@NamedNativeQuery(name = "DefectInstance.getWeeklyView3", 
+query = "select d.severity as s_name,    concat(cast(cast(count(*) as float)/ cast((select count(*) from defect_instance di, log_file f where f.id=di.log_fileid and f.fdate BETWEEN :weekbefore AND :currdate) as float)*100 as decimal(7,2)),'%') AS total_weekly"
++ " from defect_instance di, defect d, log_file f" 
++ " where di.log_fileid=f.id and d.id=di.defectid and f.fdate BETWEEN :weekbefore AND :currdate "
++" group by d.severity" ,resultSetMapping = "WeeklyViewMapping3")
+//--------------------------------------------------------------
 public class DefectInstance  {
 
 
